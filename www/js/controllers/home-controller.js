@@ -1,35 +1,24 @@
 angular.module('app')
-  .controller('homeController', function($scope, $cordovaCamera){
-
-
-
-
-
-
-
-
+  .controller('HomeController', function($scope, CameraService, NavService){
 
     $scope.onclick= function(){
-      alert("botão clicado")
+        CameraService.teste();    }
 
-      var options = {
-        quality: 100,
-        destinationType: Camera.DestinationType.DATA_URL,
-        sourceType: Camera.PictureSourceType.CAMERA,
-        allowEdit: true,
-        encodingType: Camera.EncodingType.JPEG,
-        targetWidth: 300,
-        targetHeight: 300,
-        popoverOptions: CameraPopoverOptions,
-        saveToPhotoAlbum: false,
-      correctOrientation:true
-      };
+        $scope.batata = function(){
+          alert('batata');
+        }
 
-      $cordovaCamera.getPicture(options).then(function(imageData) {
-      console.log("sucesso");
-      }, function(err) {
-        console.log("erro");
-      });
+        $scope.teste="testando a home";
 
-    }
+        $scope.onDireita = function(){
+        	NavService.direita();
+        }
+
+        $scope.onEsquerda= function(){
+        	NavService.esquerda();
+
+        }
+
+       
+    
 })

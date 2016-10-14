@@ -34,44 +34,104 @@
     <!-- your app's js -->
     <script src="js/app.js"></script>
     <script src="js/controllers/home-controller.js"></script>
+    <script src="js/controllers/gallery-controller.js"></script>
+    <script src="js/controllers/camera-controller.js"></script>
+    <script src="js/controllers/setting-controller.js"></script>
+    <script src="js/services/camera-service.js"></script>
+    <script src="js/services/nav-service.js"></script>
+    <script src="js/routes/routes.js"></script>
+
   </head>
   <body ng-app="app">
 
-      <ion-header-bar class="bar-stable">
-        <h1 class="title">Testando o ionic</h1>
-      </ion-header-bar>
+    <div class="bar bar-header bar-dark">
+      <h1 class="title">COMPLEMENTS</h1>
+    </div>
 
 
 
 
-            <ion-tabs class="tabs-positive tabs-icon-top ">
+            <ion-tabs class="tabs-dark tabs-icon-top">
 
-    <ion-tab title="Home" icon-on="ion-ios-home" icon-off="ion-ios-home-outline" ng-controller="homeController">
-      <ion-view>
-      <ion-content class="blue">
-        <h1>Tela 1</h1>
-          <button class="button" ng-click="onclick()">click</button>
-      </ion-content>
-      </ion-view>
-    </ion-tab>
+    <ion-tab title="Home" icon-on="ion-ios-home" icon-off="ion-ios-home-outline" ng-controller="HomeController" on-drag-right="onDragRight()">
 
-    <ion-tab title="Camera" icon-on="ion-ios-camera" icon-off="ion-ios-camera-outline">
-      <ion-view>
-      <ion-content class="yellow">
-        <h1>Tela 2</h1>
-      </ion-content>
-      </ion-view>
-    </ion-tab>
+      <ion-view on-drag-right="onDireita()" on-drag-left="onEsquerda()">
 
-    <ion-tab title="Gallery" icon-on="ion-images" icon-off="ion-images">
-      <ion-view>
-      <ion-content class="pink">
-        <h1>Tela 3</h1>
-      </ion-content>
-      </ion-view>
-    </ion-tab>
 
-  </ion-tabs>
+
+            <ion-content>
+
+            
+              <div class="bar bar-header ipt item-input-inset">
+                  <label class="item-input-wrapper">
+                      <i class="icon ion-ios-search placeholder-icon"></i>
+                      <input type="search" placeholder="Search">
+                  </label>
+            </div>
+
+           
+
+                <h3 class="texto-home">montando minha galeria de albuns</h3>
+              </ion-content>
+            </ion-view>
+
+
+      </ion-tab>
+
+
+
+
+
+      <ion-tab title="Camera" icon-on="ion-ios-camera" icon-off="ion-ios-camera-outline" ng-controller="CameraController" on-select="testeSelected()">
+      <ion-view on-drag-right="onDireita()" on-drag-left="onEsquerda()">
+
+  <button class="button button-dark btn ion-android-camera " type="button" ng-click="tiraFoto()"></button>
+
+            <ion-content>
+
+                    
+
+              
+                <div class="btn-save ion-left ion-heart " ng-click="saveFoto()" ng-if="imageCamera"> Save my photo</div>
+
+
+                <div class=" item-image ">
+                  <img ng-src="{{imageCamera}}" ng-if="imageCamera">
+
+                </div>
+
+              
+
+            </ion-content>
+        </ion-view>
+
+      </ion-tab>
+
+
+
+
+
+
+
+        <ion-tab title="Gallery" icon-on="ion-image" icon-off="ion-images" ng-controller="GalleryController" on-select="selected()">
+      <ion-view on-drag-right="onDireita()" on-drag-left="onEsquerda()">
+
+
+              <ion-content>
+
+
+
+                  <div class="btn-save ion-left ion-heart " ng-click="saveFoto()" ng-if="imageGallery"> Save my image</div>
+
+
+                  <div class=" item-image ">
+                    <img ng-src="{{imageGallery}}" ng-if="imageGallery">
+
+                  </div>
+              </ion-content>
+          </ion-view>
+
+</ion-tab></ion-tabs>
 
 
 
